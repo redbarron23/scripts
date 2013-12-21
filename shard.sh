@@ -15,29 +15,29 @@ done
 echo "========= SHARD 2 ============"
 for host in ${SHARD2}; do
 echo "Host: ${host}"
-ssh -t jhourihane@${host} $1
+ssh  -t jhourihane@${host} $1
 done
 
 echo "========= SHARD 3 ============"
 for host in ${SHARD3}; do
 echo "Host: ${host}"
-ssh -t jhourihane@${host} $1
+ssh  -t jhourihane@${host} $1
 done
 
 echo "========= SHARD 4 ============"
 for host in ${SHARD4}; do
 echo "Host: ${host}"
-ssh -t jhourihane@${host} $1
+ssh  -t jhourihane@${host} $1
 done
 
 echo "========= SHARD 5 ============"
 for host in ${SHARD5}; do
 echo "Host: ${host}"
-ssh -t jhourihane@${host} $1
+ssh  -t jhourihane@${host} $1
 done
 
 echo "========= SHARD 6 ============"
 for host in ${SHARD6}; do
 echo "Host: ${host}"
-ssh -t jhourihane@${host} $1
+ssh  -t jhourihane@${host} $1
 done
