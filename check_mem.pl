@@ -8,6 +8,5 @@ my $FreeMem=1;
 
 if ( $FreeMem/$TotalMem <= $FreeMemToTotalMemRatio ) {
    print "running out of memory. FreeMem = $FreeMem";
-   #$exitval = 2;
 }
 #exit($exitval);
