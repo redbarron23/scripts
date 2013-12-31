@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{325B8569-0C7C-4A6A-8AF8-89C3B6BC9E74}") = "LittleBookOfRuby", "LittleBookOfRuby\LittleBookOfRuby.stproj", "{415E2CB7-75ED-4803-A4D8-31020E54C061}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{415E2CB7-75ED-4803-A4D8-31020E54C061}.Debug|AnyCPU.ActiveCfg = Debug|AnyCPU
+		{415E2CB7-75ED-4803-A4D8-31020E54C061}.Debug|AnyCPU.Build.0 = Debug|AnyCPU
+		{415E2CB7-75ED-4803-A4D8-31020E54C061}.Release|AnyCPU.ActiveCfg = Release|AnyCPU
+		{415E2CB7-75ED-4803-A4D8-31020E54C061}.Release|AnyCPU.Build.0 = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

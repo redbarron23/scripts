@@ -1,0 +1,89 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{415e2cb7-75ed-4803-a4d8-31020e54c061}</ProjectGuid>
+    <RubyInterpreter>C:\Ruby192\bin\ruby.exe</RubyInterpreter>
+    <RubyType>Ruby 1.9.2</RubyType>
+    <RailsProject>False</RailsProject>
+    <UseMainFile>False</UseMainFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="01\helloname.rb" />
+    <Content Include="01\helloworld.rb" />
+    <Content Include="01\mainob.rb" />
+    <Content Include="01\method.rb" />
+    <Content Include="01\object.rb" />
+    <Content Include="01\string_eval.rb" />
+    <Content Include="01\tax_calculator.rb" />
+    <Content Include="01\uppercase.rb" />
+    <Content Include="02\dogs_and_cats.rb" />
+    <Content Include="02\object_class.rb" />
+    <Content Include="02\p.rb" />
+    <Content Include="02\to_s.rb" />
+    <Content Include="02\treasure.rb" />
+    <Content Include="03\adventure1.rb" />
+    <Content Include="04\accessors.rb" />
+    <Content Include="04\accessors2.rb" />
+    <Content Include="04\accessors3.rb" />
+    <Content Include="04\adventure2.rb" />
+    <Content Include="05\array0.rb" />
+    <Content Include="05\array1.rb" />
+    <Content Include="05\array2.rb" />
+    <Content Include="05\array_assign.rb" />
+    <Content Include="05\array_index.rb" />
+    <Content Include="05\array_new.rb" />
+    <Content Include="05\dir_array.rb" />
+    <Content Include="05\multi_array.rb" />
+    <Content Include="06\hash1.rb" />
+    <Content Include="06\hash2.rb" />
+    <Content Include="07\block_syntax.rb" />
+    <Content Include="07\each_loop.rb" />
+    <Content Include="07\for_each.rb" />
+    <Content Include="07\for_loop.rb" />
+    <Content Include="07\for_to.rb" />
+    <Content Include="07\notwhile_until.rb" />
+    <Content Include="07\until.rb" />
+    <Content Include="07\while.rb" />
+    <Content Include="07\while2.rb" />
+    <Content Include="08\and_or.rb" />
+    <Content Include="08\and_or_buggy.rb" />
+    <Content Include="08\case.rb" />
+    <Content Include="08\case2.rb" />
+    <Content Include="08\if_else.rb" />
+    <Content Include="08\if_elseif.rb" />
+    <Content Include="08\if_else_alt.rb" />
+    <Content Include="08\if_then.rb" />
+    <Content Include="08\if_unless_mod.rb" />
+    <Content Include="08\unless.rb" />
+    <Content Include="09\modules1.rb" />
+    <Content Include="09\modules2.rb" />
+    <Content Include="09\modules3.rb" />
+    <Content Include="09\modules4.rb" />
+    <Content Include="09\mod_vars.rb" />
+    <Content Include="09\requiremodule.rb" />
+    <Content Include="09\testmod.rb" />
+    <Content Include="readme.txt" />
+    <Content Include="10\cd_db.yml" />
+    <Content Include="10\data_save.rb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="01\" />
+    <Folder Include="02\" />
+    <Folder Include="03\" />
+    <Folder Include="04\" />
+    <Folder Include="05\" />
+    <Folder Include="06\" />
+    <Folder Include="07\" />
+    <Folder Include="08\" />
+    <Folder Include="09\" />
+    <Folder Include="10\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\SapphireSteel Software\Ruby In Steel 2010\RubyInSteel.targets" />
+</Project>

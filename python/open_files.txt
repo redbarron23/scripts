@@ -1,0 +1,30 @@
+f = open('somefile.txt','r')
+for line in f.readlines():
+    print line
+f.close()
+
+# ...and...
+
+f = open('somefile.txt','r')
+for line in f.read().split('\n'):
+    print line
+f.close()
+The xreadlines() function should be used for big files:
+
+f = open('HUGE.log','r'):
+for line in f.xreadlines():
+   print line
+f.close()
+
+<open file 'declaration.txt', mode 'r' at 0x10c1b95d0>
+>>> f.name
+'declaration.txt'
+
+>>> f.read()
+
+>>> f.readline()
+'When in the Course of human events it becomes necessary for one people to dissolve\n'
+>>> f.readline()
+'the political bands which have connected them with another and to assume among the\n'
+
+
