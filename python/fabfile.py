@@ -99,35 +99,35 @@ env.roledefs = {
 # front_end nginx?
 ####################
      'frontend_prod' : [
-                         'ec2-23-22-248-4.compute-1.amazonaws.com', 
-                         'ec2-54-234-157-199.compute-1.amazonaws.com', 
-                         'ec2-204-236-193-209.compute-1.amazonaws.com', 
-                         'ec2-54-234-157-199.compute-1.amazonaws.com', 
-                         'ec2-204-236-193-209.compute-1.amazonaws.com', 
-                         'ec2-23-22-25-48.compute-1.amazonaws.com', 
-                         'ec2-174-129-178-161.compute-1.amazonaws.com', 
-                         'ec2-23-20-119-24.compute-1.amazonaws.com', 
-                         'ec2-50-16-89-201.compute-1.amazonaws.com', 
-                         'ec2-107-21-151-134.compute-1.amazonaws.com', 
-                         'ec2-50-16-23-111.compute-1.amazonaws.com', 
-                         'ec2-50-19-27-238.compute-1.amazonaws.com', 
-                         'ec2-23-23-2-147.compute-1.amazonaws.com', 
-                         'ec2-50-19-69-94.compute-1.amazonaws.com', 
-                         'ec2-184-72-187-103.compute-1.amazonaws.com', 
-                         'ec2-107-21-152-233.compute-1.amazonaws.com', 
-                         'ec2-23-22-184-87.compute-1.amazonaws.com', 
-                         'ec2-50-19-156-163.compute-1.amazonaws.com', 
-                         'ec2-23-22-93-57.compute-1.amazonaws.com', 
-                         'ec2-107-22-127-120.compute-1.amazonaws.com', 
-                         'ec2-23-22-143-81.compute-1.amazonaws.com', 
-                         'ec2-23-20-18-247.compute-1.amazonaws.com', 
+                         'ec2-23-22-248-4.compute-1.amazonaws.com',
+                         'ec2-54-234-157-199.compute-1.amazonaws.com',
+                         'ec2-204-236-193-209.compute-1.amazonaws.com',
+                         'ec2-54-234-157-199.compute-1.amazonaws.com',
+                         'ec2-204-236-193-209.compute-1.amazonaws.com',
+                         'ec2-23-22-25-48.compute-1.amazonaws.com',
+                         'ec2-174-129-178-161.compute-1.amazonaws.com',
+                         'ec2-23-20-119-24.compute-1.amazonaws.com',
+                         'ec2-50-16-89-201.compute-1.amazonaws.com',
+                         'ec2-107-21-151-134.compute-1.amazonaws.com',
+                         'ec2-50-16-23-111.compute-1.amazonaws.com',
+                         'ec2-50-19-27-238.compute-1.amazonaws.com',
+                         'ec2-23-23-2-147.compute-1.amazonaws.com',
+                         'ec2-50-19-69-94.compute-1.amazonaws.com',
+                         'ec2-184-72-187-103.compute-1.amazonaws.com',
+                         'ec2-107-21-152-233.compute-1.amazonaws.com',
+                         'ec2-23-22-184-87.compute-1.amazonaws.com',
+                         'ec2-50-19-156-163.compute-1.amazonaws.com',
+                         'ec2-23-22-93-57.compute-1.amazonaws.com',
+                         'ec2-107-22-127-120.compute-1.amazonaws.com',
+                         'ec2-23-22-143-81.compute-1.amazonaws.com',
+                         'ec2-23-20-18-247.compute-1.amazonaws.com',
                          'ec2-23-22-86-242.compute-1.amazonaws.com'
                        ],
 
 ####################
 #resque
 ####################
-     'resque' : [ 
+     'resque' : [
                   'ec2-50-19-1-59.compute-1.amazonaws.com',
                   'ec2-184-72-142-215.compute-1.amazonaws.com',
                   'ec2-50-19-24-45.compute-1.amazonaws.com',
@@ -145,7 +145,7 @@ env.roledefs = {
                   'ec2-75-101-184-212.compute-1.amazonaws.com',
                   'ec2-50-16-58-195.compute-1.amazonaws.com',
                   'ec2-107-20-118-60.compute-1.amazonaws.com'
-                ], 
+                ],
 
 
 ####################
@@ -157,11 +157,11 @@ env.roledefs = {
 # nadge
 ####################
      'nadge' : ['ec2-user@nadge.bad.ge:2222']
-        
+
 ####################
  #QA Servers
 ####################
-    
+
 ####################
 #SandBox
 ####################
