@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+from bs4 import BeautifulSoup
+import urllib2
+
+url = "http://www.pythonforbeginners.com"
+
+content = urllib2.urlopen(url).read()
+
+soup = BeautifulSoup(content)
+
+print soup.prettify()
+
+print title
+>> 'title'← Python For Beginners
+
+print soup.title.string
+>> ← Python For Beginners
+
+print soup.p
+ <p id="tagline"></p>
+
+print soup.a
+<a href="http://www.pythonforbeginners.com">Python For Beginners</a>
+

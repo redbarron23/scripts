@@ -1,0 +1,233 @@
+perl -p -e 's/(:)[^:]*/$1*/' shadow 
+
+
+collection of one-liners, a part is adapted from such a list by
+Tom Christianson, one of the authors of "Programming Perl".
+
+    # the always present hallo world program, adapted to a Math department
+    perl -e 'print "Hello Mr Euler!\n"'
+
+    # rename in each file name the string aaa by bbb
+    ls | perl -ne 'chomp; next unless -e; $o = $_; s/aaa/bbb/; next if -e; rename $o, $_'; 
+
+    # add first and last column in each line of file foo.txt and print it out
+    perl -lane 'print $F[0] + $F[-1]' foo.txt
+
+    # print lines 15 to 17 of file foo.txt
+    perl -ne 'print if 15 .. 17' foo.txt
+
+    # a second way to print lines 3 to 5 of file foo.txt
+    perl -pe 'exit if 3<$. && $.<5' foo.txt
+
+    # change all words "foo"s to "bar"s in every .c file and keep backups
+    perl -p -i.bak -e 's/\bfoo\b/bar/g' *.c
+
+    # the same but without backup. Remember the flags: "eat the pie"
+    perl -p -i -e 's/foo/bar/g' *.c
+
+    # changes ^M newline characters to newlines 
+    perl  -p -i -e 's/\012?\015/\n/g'  $1
+
+    # the same but with all files with name filename
+    perl -p -i -e  's/foo/bar' `find . -name "filename"`
+
+    # substitution can also be applied to binary files like test.ppm
+    perl -p -i -e 's/255/127/g' test.ppm
+
+    # substitute "xyz.math" to "abc.math" in every .html file and keep backups
+    perl -p -i.bak -e 's/xyz\.math/abc\.math/g' *.html
+
+    # insert department name after each title and keep backup
+    perl -p -i.bak -e 's#<title>#<title>Harvard .: #i' *.html
+
+    # delete first 10 lines in foo.txt and keep backup foo.txt.bak
+    perl -i.bak -ne 'print unless 1 .. 10' foo.txt
+
+    # change isolated occurrence of aaa to bbb in each file *.c or *.h
+    perl -p -i.bak -e 's{\baaa\b}{bbb}g' *.[ch]
+
+    # reverses lines of file foo.txt and print it
+    perl -e 'print reverse <>' foo.txt
+
+    # find palindromes in a dictionary /usr/share/dict/words
+    perl -lne 'print if $_ eq reverse' /usr/share/dict/words
+
+    # reverses paragraphs in file foo.txt
+    perl -00 -e 'print reverse <>' foo.txt
+
+    # increments all numbers in foo.tx by 1
+    perl -pe 's/(\d+)/ 1 + $1 /ge' foo.txt
+
+    # reverses order of characters in each line of foo.txt
+    perl -nle 'print scalar reverse $_' foo.txt
+
+    # print lines beween START and END in foo.txt to STDOUT
+    perl -ne 'print if /^START$/ .. /^END$/' foo.txt
+
+    # delete lines beween START and END and backup original file 
+    perl -i.old -ne 'print unless /^START$/ .. /^END$/' foo.txt
+
+    # look for duplicated words in a line
+    perl -0777 -ne 'print "$.: doubled $_\n" while /\b(\w+)\b\s+\b\1\b/gi' foo.txt
+
+    # start Perl debugger "stand-alone"
+    perl -d -e 42
+
+    # run a Perl program program.pl with warnings
+    perl -w program.pl
+
+    # run a Perl program program.pl with debugger
+    perl -d program.pl
+
+    # Run perl program program.pl, check syntax, print warnings
+    perl -wc program.pl
+
+ls -lAF | perl -e ’while (<>) { next if /^[dt]/; print $_; }’
+$ ls -lAF | perl -e ’while (<>) { next if /^[dt]/; print +(split)[4], "\n" } ’
+ls -lAF | perl -e ’while (<>) { next if /^[dt]/; $sum += (split)[4] } print "$sum\n"’
+perl -F: -lane 'print $F[0] if !/^#/' /etc/passwd
+perl -nle "print if /pattern/" input.txt
+
+Syntax:                   perl -wc script.pl
+CGI module version:       perl -MCGI -e "print $CGI::VERSION"
+Contents of @INC:         perl -e "foreach $a (@INC) { print qq/$a\n/}"
+Find and Replace
+
+Pattern:                  perl -pe "s/aaa/bbb/g" input.txt
+                          perl -pe "s/\baaa\b/bbb/g" input.txt
+Pattern (redirect):       perl -pe "s/aaa/bbb/g" input.txt > output.txt
+                          perl -pe "s/\naaa/\bbbb/g" input.txt > output.txt
+Pattern (edit in place):  perl -i.bak -pe "s/aaa/bbb/g" input.txt
+                          perl -i.bak -pe "s/\baaa/\bbbb/g" input.txt
+Left/Right spaces:        perl -lpe "s/^\s+//;s/\s+$//" input.txt
+Left spaces:              perl -lpe "s/^\s+//" input.txt
+Right spaces:             perl -lpe "s/\s+$//" input.txt
+Collapse spaces:          perl -pe "s/( )+\1/$1/g" input.txt
+Remove first column:      perl -nale 'shift@F;print"@F"'
+Replace blank lines:      perl -ne "/\S/? print : print qq/subtext\n/" input.txt
+                          perl -ne "/\S/ && print" input.txt
+Remove blank lines:       perl -pe "unless (/\S/) {$_=''}" input.txt
+                          perl -ane "@F && print" input.txt
+                          perl -lp00ee input.txt
+Collapse blank lines:     perl -0777 -pe "s/\n+/\n\n/g;chop" input.txt
+                          perl -00 -pi.bak -e 1 input.txt
+Insert
+
+Double space:             perl -pe "$_.=$/" input.txt
+                          perl -pe "$_.=qq/\n/" input.txt
+                          perl -0777 -lpe "s/\n/\n\n/g" input.txt
+Line at top:              perl -e "@a=<>;print qq/new line\n/;print @a" input.txt > output.txt
+                          perl -0777 -pe "print qq/newline\n/" input.txt
+                          perl -pe "print qq/newline\n/ if $.==1" input.txt
+                          perl -e "@a = <>; unshift (@a,qq/newline\n/);print @a" input.txt
+Line at bottom:           perl -e "@a=<>;print @a; print qq/new line\n/" input.txt > output.txt
+                          perl -0777 -pe " END {print qq/\nnewline/}" input.txt
+                          perl -e "open (IN,'>>input.txt');print IN qq/\nnewline/"
+Line at arbitrary pos:    perl -pi.bak -le "print 'New line added!!' if $. == 3" input.txt
+                          perl -pi.bak -le "print 'New line added!!' if $. == 3; close ARGV if eof" input1.txt input2.txt
+Line numbers:             perl -pe "$_ = sprintf '%04d %s', $., $_" input.txt
+                          perl -pe "$_ = qq/$.\t$_/" input.txt
+                          perl -pe "$_ = qq/$. - $_/" input.txt
+Columns:                  --
+Conversion
+
+DOS to Unix:              perl -i.bak -pe "s/\n/\r/g" input.txt
+Unix to DOS:              perl -i.bak -pe "s/\r/\n/g" input.txt
+Print
+
+First Matching line:      perl -ne "print and last if /pattern/" input.txt
+Matching lines:           perl -nle "print if /pattern/" input.txt
+Matching content:         perl -nle "print $1 if /(pattern)/" input.txt
+Matching lines/filename:  perl -nle "print qq/$ARGV: $_/ if /pattern/" input1.txt input2.txt
+Non-matching lines:       perl -nle "print unless /(pattern)/" input.txt
+Non-blank lines:          perl -ne "print if /\S/" input.txt
+                          perl -ne "print unless /^$/" input.txt
+Non-comment lines:        perl -ne "print unless /^#/" input.txt
+Lines before marker:      perl -pe "last if /^START$/" input.tx
+Lines through marker:     perl -ne "print; last if /pattern/" input.txt
+Lines between markers:    perl -ne "print if /^START$/ .. /^END$/" input.txt
+Lines outside markers:    perl -ne "print if ! /^START$/ .. /^END$/"
+Line 1                    perl -e "$_=<>;chomp;print" input.txt
+Line r                    perl -nle "print if $. == 5" input.txt
+                          perl -ne 'print and exit if $. == 5' file
+                          perl -ne 'print and last if $. == 5' file
+Lines r .. s:             perl -ne "print if 5 .. 8" input.txt
+                          perl -ne "print if $. >= 5; exit if $. >= 8" input.txt
+Lines outside r..s:       perl -ne "print unless 5 .. 8" input.txt
+                          perl -ne "print if $. < 5 || $. > 8;" input.txt
+Lines between r..s:       perl -ne "print if 5+1 .. 8-1" input.txt
+                          perl -ne "print if $. > 5 && $. < 8; exit if $. >= 8" input.txt
+First n lines:            perl -pe "exit if $. > 5" input.txt
+                          perl -ne "print if 1 .. 5" input.txt
+Last n lines:             perl -e "@a = <>; print @a[$#a-5+1 .. $#a]" input.txt
+Last line:                perl -e "@a = <>; print $a[$#a]" input.txt
+                          perl -e "print+()[-1]" input.txt
+Long lines:               perl -ne "print if length > 80" input.txt
+Specific column:          perl -pale "$_=$F[1]" input.txt
+                          perl -ple "@a=split;$_=$a[1]" input.txt
+Matching paragraphs:      perl -00 -ne "print if /pattern/" input.txt
+All words:                perl -0777 -lne "foreach (sort split){print qq/$_\n/}" input.txt
+Unique words:             perl -0777 -ne "foreach (sort split){print qq/$_\n/ if $_ ne $old; $old=$_}" input.txt
+                          perl -0777 -ane "@U{@F}=();print join(qq/\n/,sort keys %U)" input.txt
+Duplicate words:          perl -0777 -ne "foreach (sort split){print qq/$_\n/ if $_ ne $old; $old=$_}" input.txt
+Double quoted strings:    perl -lne "print $1 while (/\"(.*?)\"/g)" input.txt
+
+Format
+
+Lower case text:          perl -pe "$_=lc $_" input.txt  
+                          perl -ne "print lc" input.txt  
+                          perl -pe "tr/A-Z/a-z/" input.txt
+Lower case text (UC 1st): perl -ne "print ucfirst lc" input.txt
+                          perl -pe "s/(\w)(.*)$/\U$1\L$2/" input.txt 
+                          perl -pe "s/\w.+/\u\L$&/" input.txt        
+Upper case 1st char:      perl -ne "print ucfirst $_" input.txt  
+                          perl -pe "s/(\w)(.*)$/\u$1$2/" input.txt 
+                          perl -pe "s/\w.+/\u$&/" input.txt        
+Lower case filenames:     perl -e "@f=<*.jpg>;foreach (@f) {rename $_, lc($_) }"
+                          perl -e "for (glob qq/*jpg/) { rename $_, lc($_) }"
+Upper case filename:      perl -e "@f=<*.jpg>;foreach (@f) {rename $_, uc($_) }"
+                          perl -e "for (glob qq/*jpg/) { rename $_, uc($_) }"
+Wordwrap:                 perl -000 -pe "tr/ \t\n\r/ /;s/(.{50,72})\s/$1\n/g;$_.=qq/\n/x2" input.txt
+Reverse
+
+Characters in each line:  perl -nle "print scalar reverse $_" input.txt
+Characters in file:       
+Lines in each file:       perl -e "@L=reverse<>; chomp @L; print join(qq/\n/,@L)" input.txt
+Columns in each file:     perl -lane "@new = reverse @F; print join(' ',@new)" input.txt
+Paragraphs in each file:  perl -00 -e "print reverse <>" input.txt
+HTML
+
+Get URL                   perl -e "use LWP::Simple; getprint 'http://www.garybeene.com'"
+                          perl -MLWP::Simple -e "getprint 'http://www.garybeene.com'"
+Add Title info:           perl -pe "s/<title>/<title>garybeene.com/i" input.txt
+Add Footnote:             perl -pe "s/<\/body>/<address>Gary Beene<\/address><\/body>/i" input.txt
+Extract URLs:             perl -nle "print $1 while /\<a\b[^\>\"]*?\bhref\s*=\s*[\"]?([^\>\"]*)/gi" input.txt
+Statistics
+
+Character count:          perl -lne "$c += length; END { print $c }" input.txt
+                          perl -0777 -ne "s/\n//g; print length($_)" input.txt
+Vowel count:              perl -ne "END{print $c} $c += tr/aeiou//" input.txt
+Character distribution:   perl -0777 -ne "s/\n//g;@C=split//;for(@C){$C{$_}++} END{for(sort keys %C){print qq/$_,: $C{$_}\n/}}" input.txt
+Word distribution:        perl -ane "for(@F){$F{$_}++} END{for(sort keys %F){print qq/$_: $F{$_}\n/}}" input.txt
+Line count:               perl -ne "END { print $. }" input.txt
+                          perl -e "@L=<>; print scalar @L" input.txt
+                          perl -ne "END {print $.}" input.txt
+Word count:               perl -ane "$c += scalar @F; END {print $c}" input.txt
+                          perl -ane "$c += $#F; END {print $c}" input.txt
+                          perl -0777 -ane "print scalar @F" input.txt
+                          perl -0777 -ne "print scalar split" input.txt
+Unique word count:        perl -0777 -ne "foreach (sort split){if ($_ ne $old) {print qq/$_\n/;$old=$_;$c++}} END{print $c}" input.txt
+Duplicate word count:     perl -0777 -ne "foreach (sort split){if ($_ eq $old) {print qq/$_\n/;$old=$_;$c++}} END{print $c}" input.txt
+Math
+
+Add command line numbers: perl -e "print eval join('+', @ARGV)" 5 10 15 20
+                          perl -e "foreach (@ARGV) {$c+=$_};print $c" 5 10 15 20
+Add columns (r plus s):   perl -ane "print $F[0]+$F[2];print qq/\n/" input.txt
+Add columns (r thru s):   perl -ane "foreach (@F[0..2]){$c+=$_};print qq/$c\n/;$c=0" input.txt
+Add lines (column 1):     perl -ne "$c+=$_; END{print $c}" input.txt
+Add lines (column n):     perl -ane "$c+= $F[0]; END { print $c }" input.txt
+                          perl -lane "print $s += $F[2]" input.txt 
+Increment all numbers:    perl -pe "s/(\d+)/ 1 + $1 /ge" input.txt
+Create random numbers:    perl -e "foreach (1..10) { print int(rand(101)).qq/\n/ }"
+Rot13 Encryption:         perl -pe "tr/A-Za-z/N-ZA-Mn-za-m/; print" input.txt
+Test number for prime:    perl -le "print 'PRIME' if (1 x shift) !~ /^(11+)\1+$/ " 37
